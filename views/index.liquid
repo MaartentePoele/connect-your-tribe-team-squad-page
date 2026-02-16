@@ -67,33 +67,35 @@
       </aside>
 
       <section>
-        
-      <article class="container">
-          <figure>
-            {% if person.mugshot %}
-   
-     <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
+        {% for person in persons %}
+          <article class="container">
+            <figure>
+              {% if person.mugshot %}
+                <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
 
-    {% else %} 
-      <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-placeholder-flat-600nw-1151124605.jpg" alt="" /> 
-  {% endif %}
-            <figcaption><h2>(voornaam)</h2>(emoji)</figcaption>
-          </figure>
-          <article class="overlay overlaybottom">
-            <h3>Naam</h3>
-            <h3>Bio:</h3>
-            <p>bio</p>
-            <h3>Squad:</h3>
-            <p>1J</p>
-            <h3>Team:</h3>
-            <p>Harmony</p>
+              {% else %}
+                <img
+                  src="https://www.shutterstock.com/image-vector/blank-avatar-photo-placeholder-flat-600nw-1151124605.jpg"
+                  alt=""
+                >
+              {% endif %}
+              <figcaption>
+                <h2>(voornaam)</h2>
+                (emoji)
+              </figcaption>
+            </figure>
+            <article class="overlay overlaybottom">
+              <h3>Naam</h3>
+              <h3>Bio:</h3>
+              <p>bio</p>
+              <h3>Squad:</h3>
+              <p>1J</p>
+              <h3>Team:</h3>
+              <p>Harmony</p>
+            </article>
           </article>
-        </article>
+        {% endfor %}
       </section>
-
-
-      
-  
     </main>
 
     {% comment %}
