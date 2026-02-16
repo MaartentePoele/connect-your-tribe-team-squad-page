@@ -1,0 +1,12 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --background-color-1: #050542;
+    --background-color-2: #66e5bf;
+
+    --text-color-1: #050542;
+    --text-color-2: #66e5bf;
+}
