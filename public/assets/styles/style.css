@@ -107,11 +107,11 @@ aside {
 /* BEGIN KÉ */
 body {
     display: grid;
-    grid-template-columns: repeat(1fr 1fr);
+
 }
 
 section{
-    margin: 20em;
+    margin: 7em 20em;
 }
 .container {
   position: relative;
@@ -120,7 +120,9 @@ section{
   padding: 1em;
   margin: 1em;
   border-radius: 1em;
+  border: solid var(--outline-color-2) 3px;
   background-color: var(--background-color-1);
+box-shadow: var(--outline-color-2) 5px 5px, var(--outline-color-2) 8px 8px;
 }
 
 img {
@@ -132,6 +134,7 @@ img {
   object-fit: cover;
 }
 
+figcaption{color: var(--text-color-2);}
 
 .overlay {
   position: absolute;
@@ -141,6 +144,8 @@ img {
   border-radius: 1em;
   overflow: hidden;
   padding: 1em;
+  border: solid var(--outline-color-1) 3px;
+box-shadow: var(--outline-color-1) 5px 5px, var(--outline-color-1) 8px 8px;
 }
 
 .container:hover .overlay {
@@ -152,8 +157,8 @@ img {
 .overlaybottom {
   width: 100%;
   height: 0;
-  bottom: 0;
-  left: 0;
+  bottom: -2px;
+  left: -3px;
 }
 
 .container:hover .overlaybottom {
