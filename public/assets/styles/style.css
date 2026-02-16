@@ -116,7 +116,7 @@ section{
 }
 .container {
   position: relative;
-  width: 20em;
+  max-width: 20em;
   display: inline-block;
   padding: 1em;
   margin: 1em;
@@ -128,7 +128,7 @@ box-shadow: var(--outline-color-2) 5px 5px, var(--outline-color-2) 8px 8px;
 
 img {
   display: block;
-  width: 20em;
+    max-width: 20em;
   height: 16em;
   position: relative;
   border-radius: 1em;
@@ -151,7 +151,7 @@ box-shadow: var(--outline-color-1) 5px 5px, var(--outline-color-1) 8px 8px;
 
 .container:hover .overlay {
   opacity: 1;
-  width: 20em;
+    max-width: 20em;
 
 }
 
