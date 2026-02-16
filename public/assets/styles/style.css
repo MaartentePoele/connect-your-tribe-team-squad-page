@@ -11,6 +11,12 @@
 
     --text-color-1: #050542;
     --text-color-2: #66e5bf;
+
+    --text-color-1: #050542;
+    --text-color-2: #fff;
+
+    --outline-color-1: #050542;
+    --outline-color-2: #66e5bf;
     
     /* h1 */
     --font-size-xl: 3rem;
@@ -20,6 +26,21 @@
     --font-size-m: 1.5rem;
     /* p */
     --font-size-s: 1rem;
+}
+
+header {
+    background: var(--background-color-1);
+    outline
+    width: 100%;
+    height: 100px;
+}
+
+aside {
+    background: var(--background-color-2);
+    position: absolute;
+    left: 0;
+    height: 1000px;
+    width: 250px;
 }
 
 /* EINDE KEVIN */
