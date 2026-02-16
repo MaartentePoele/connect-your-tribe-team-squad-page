@@ -1,22 +1,32 @@
-<h1>Zet 'm op team {{ teamName }}!</h1>
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squad Page</title>
+  </head>
+  <body>
+    <h1>Zet 'm op team {{ teamName }}!</h1>
 
-<h2>Huidige berichten</h2>
+    <h2>Huidige berichten</h2>
 
-{% for message in messages %}
-  <p>{{ message.from }}: {{ message.text }} @{{ message.created | date: '%d-%m-%Y %H:%M' }}</p>
-{% else %}
-  <p>Er zijn nog geen berichten voor dit team.</p>
-{% endfor %}
+    {% for message in messages %}
+      <p>{{ message.from }}: {{ message.text }} @{{ message.created | date: '%d-%m-%Y %H:%M' }}</p>
+    {% else %}
+      <p>Er zijn nog geen berichten voor dit team.</p>
+    {% endfor %}
 
-<h2>Voeg een bericht toe</h2>
-<form method="post" action="/">
-  <label>
-    Naam:
-    <input type="text" name="from" required>
-  </label>
-  <label>
-    Bericht:
-    <textarea name="text" required></textarea>
-  </label>
-  <button type="submit">Verstuur</button>
-</form>
+    <h2>Voeg een bericht toe</h2>
+    <form method="post" action="/">
+      <label>
+        Naam:
+        <input type="text" name="from" required>
+      </label>
+      <label>
+        Bericht:
+        <textarea name="text" required></textarea>
+      </label>
+      <button type="submit">Verstuur</button>
+    </form>
+  </body>
+</html>
