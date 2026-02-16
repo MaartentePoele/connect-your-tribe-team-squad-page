@@ -29,14 +29,16 @@
 }
 
 header {
-    background: var(--background-color-1);
-    outline
+    background: var(--background-color-2);
+    outline: solid var(--outline-color-1);
     width: 100%;
     height: 100px;
 }
 
 aside {
+    z-index: -1;
     background: var(--background-color-2);
+    outline: solid var(--outline-color-1);
     position: absolute;
     left: 0;
     height: 1000px;
