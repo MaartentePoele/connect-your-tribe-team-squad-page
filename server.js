@@ -60,12 +60,16 @@ app.get("/", async function (request, response) {
     "filter[squads][squad_id][cohort]": "2526",
   };
 
+  // Sorteer op naam
   if (request.query.sort == "name:asc") {
     params["sort"] = "name";
   } else if (request.query.sort == "name:desc") {
     params["sort"] = "-name";
+  } else {
+    params["sort"] = "name";
   }
 
+  // Filter op team
   if (request.query.filter == "Cheer") {
     params["filter[team][_eq]"] = "Cheer";
   } else if (request.query.filter == "Dazzle") {
@@ -82,6 +86,42 @@ app.get("/", async function (request, response) {
     params["filter[team][_eq]"] = "Spark";
   } else if (request.query.filter == "Sunny") {
     params["filter[team][_eq]"] = "Sunny";
+  } else {
+    params["sort"] = "name";
+  }
+
+  // Filter op squad
+  if (request.query.filter == "1J") {
+    params["filter[squads][squad_id][name][_eq]"] = "1J";
+  } else if (request.query.filter == "1I") {
+    params["filter[squads][squad_id][name][_eq]"] = "1I";
+  } else {
+    params["sort"] = "name";
+  }
+
+  // Filter op emoji
+  if (request.query.filter == "🧌") {
+    params["filter[vibe_emoji][_eq]"] = "🧌";
+  } else if (request.query.filter == "🍗") {
+    params["filter[vibe_emoji][_eq]"] = "🍗";
+  } else if (request.query.filter == "❤️") {
+    params["filter[vibe_emoji][_eq]"] = "❤️";
+  } else if (request.query.filter == "🫡") {
+    params["filter[vibe_emoji][_eq]"] = "🫡";
+  } else if (request.query.filter == "🤑") {
+    params["filter[vibe_emoji][_eq]"] = "🤑";
+  } else if (request.query.filter == "👀") {
+    params["filter[vibe_emoji][_eq]"] = "👀";
+  } else if (request.query.filter == "🦧") {
+    params["filter[vibe_emoji][_eq]"] = "🦧";
+  } else if (request.query.filter == "🪤") {
+    params["filter[vibe_emoji][_eq]"] = "🪤";
+  } else if (request.query.filter == "🫧") {
+    params["filter[vibe_emoji][_eq]"] = "🫧";
+  } else if (request.query.filter == "💅🏻") {
+    params["filter[vibe_emoji][_eq]"] = "💅🏻";
+  } else {
+    params["sort"] = "name";
   }
 
   const personResponse = await fetch(
