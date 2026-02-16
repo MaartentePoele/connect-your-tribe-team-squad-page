@@ -67,12 +67,19 @@
       </aside>
 
       <section>
-        <article>
+        
+        <article class="container">
           <figure>
-            <img src="" alt="">
+            {% if person.mugshot %}
+   
+     <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
+
+    {% else %} 
+      <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-placeholder-flat-600nw-1151124605.jpg" alt="" /> 
+  {% endif %}
             <figcaption><h2>(voornaam)</h2>(emoji)</figcaption>
           </figure>
-          <article>
+          <article class="overlay overlaybottom">
             <h3>Naam</h3>
             <h3>Bio:</h3>
             <p>bio</p>
@@ -83,6 +90,10 @@
           </article>
         </article>
       </section>
+
+
+      
+  
     </main>
 
     {% comment %}
