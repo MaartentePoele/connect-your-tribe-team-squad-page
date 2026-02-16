@@ -29,6 +29,9 @@
 }
 
 header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     background: var(--background-color-2);
     outline: solid var(--outline-color-1);
     width: 100%;
@@ -39,12 +42,13 @@ header {
 
 aside {
     z-index: -1;
+    padding-top: 10em;
     background: var(--background-color-2);
     outline: solid var(--outline-color-1);
     position: absolute;
     left: 0;
     height: 1000px;
-    width: 250px;
+    width: 300px;
 }
 
 /* EINDE KEVIN */
