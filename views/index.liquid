@@ -6,27 +6,103 @@
     <title>Squad Page</title>
   </head>
   <body>
-    <h1>Zet 'm op team {{ teamName }}!</h1>
+    <header>
+      <h1>Squad Page</h1>
+      <input type="search">
+    </header>
 
-    <h2>Huidige berichten</h2>
+    <main>
+      <aside>
+        <h2>Sorteer op:</h2>
+        <label>Naam:</label>
+        <select>
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+        </select>
 
-    {% for message in messages %}
-      <p>{{ message.from }}: {{ message.text }} @{{ message.created | date: '%d-%m-%Y %H:%M' }}</p>
-    {% else %}
-      <p>Er zijn nog geen berichten voor dit team.</p>
-    {% endfor %}
+        <h2>Filter op</h2>
+        <label>Squad:</label>
+        <select>
+          <option value="1i">1I</option>
+          <option value="1j">1J</option>
+        </select>
 
-    <h2>Voeg een bericht toe</h2>
-    <form method="post" action="/">
-      <label>
-        Naam:
-        <input type="text" name="from" required>
-      </label>
-      <label>
-        Bericht:
-        <textarea name="text" required></textarea>
-      </label>
-      <button type="submit">Verstuur</button>
-    </form>
+        <label>Team:</label>
+        <select>
+          <option value="bliss">Bliss</option>
+          <option value="cheer">Cheer</option>
+          <option value="dazzle">Dazzle</option>
+          <option value="delight">Delight</option>
+          <option value="fun">Fun</option>
+          <option value="glow">Glow</option>
+          <option value="happy">Happy</option>
+          <option value="harmony">Harmony</option>
+          <option value="jolly">Jolly</option>
+          <option value="joy">Joy</option>
+          <option value="radiant">Radiant</option>
+          <option value="rocket">Rocket</option>
+          <option value="spark">Spark</option>
+          <option value="sunny">Sunny</option>
+        </select>
+
+        <label>Emoji:</label>
+        <select>
+          <option value="🧌">🧌</option>
+          <option value="🍗">🍗</option>
+          <option value="❤️">❤️</option>
+          <option value="🫡">🫡</option>
+          <option value="🤑">🤑</option>
+          <option value="👀">👀</option>
+          <option value="🦧">🦧</option>
+          <option value="🪤">🪤</option>
+          <option value="🫧">🫧</option>
+          <option value="💅🏻">💅🏻</option>
+        </select>
+
+        <label>Favorieten:</label>
+        <input type="checkbox">
+
+        <button>Submit</button>
+      </aside>
+
+      <section>
+        <article>
+          <figure>
+            <img src="" alt="">
+            <figcaption><h2>(voornaam)</h2>(emoji)</figcaption>
+          </figure>
+          <article>
+            <h3>Naam</h3>
+            <h3>Bio:</h3>
+            <p>bio</p>
+            <h3>Squad:</h3>
+            <p>1J</p>
+            <h3>Team:</h3>
+            <p>Harmony</p>
+          </article>
+        </article>
+      </section>
+    </main>
+
+    {% comment %}
+      {% for message in messages %}
+        <p>{{ message.from }}: {{ message.text }} @{{ message.created | date: '%d-%m-%Y %H:%M' }}</p>
+      {% else %}
+        <p>Er zijn nog geen berichten voor dit team.</p>
+      {% endfor %}
+
+      <h2>Voeg een bericht toe</h2>
+      <form method="post" action="/">
+        <label>
+          Naam:
+          <input type="text" name="from" required>
+        </label>
+        <label>
+          Bericht:
+          <textarea name="text" required></textarea>
+        </label>
+        <button type="submit">Verstuur</button>
+      </form>
+    {% endcomment %}
   </body>
 </html>
