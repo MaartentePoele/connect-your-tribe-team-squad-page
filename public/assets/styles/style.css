@@ -23,7 +23,7 @@
     /* h2 */
     --font-size-l: 2rem;
     /* h3 */
-    --font-size-m: 1.5rem;
+    --font-size-m: 1.6rem;
     /* p */
     --font-size-s: 1rem;
 }
@@ -111,12 +111,14 @@ body {
 
 }
 
+
 section{
     margin: 7em 20em;
 }
 .container {
   position: relative;
-  max-width: 20em;
+  max-width: 12em;
+  height: 16em;
   display: inline-block;
   padding: 1em;
   margin: 1em;
@@ -126,10 +128,13 @@ section{
 box-shadow: var(--outline-color-2) 5px 5px, var(--outline-color-2) 8px 8px;
 }
 
+h2{font-size: var(--font-size-m);
+display: inline;}
+
 img {
   display: block;
-    max-width: 20em;
-  height: 16em;
+    max-width: 12em;
+  height: 12em;
   position: relative;
   border-radius: 1em;
   object-fit: cover;
@@ -143,7 +148,7 @@ figcaption{color: var(--text-color-2);}
   opacity: 0;
   background-color:var(--background-color-2);
   border-radius: 1em;
-  overflow: hidden;
+  overflow: scroll;
   padding: 1em;
   border: solid var(--outline-color-1) 3px;
 box-shadow: var(--outline-color-1) 5px 5px, var(--outline-color-1) 8px 8px;
@@ -151,7 +156,7 @@ box-shadow: var(--outline-color-1) 5px 5px, var(--outline-color-1) 8px 8px;
 
 .container:hover .overlay {
   opacity: 1;
-    max-width: 20em;
+    max-width: 12em;
 
 }
 
@@ -163,6 +168,6 @@ box-shadow: var(--outline-color-1) 5px 5px, var(--outline-color-1) 8px 8px;
 }
 
 .container:hover .overlaybottom {
-  height: 92%;
+  height: 90%;
 }
 /* EINDE KÉ */

@@ -80,18 +80,18 @@
                 >
               {% endif %}
               <figcaption>
-                <h2>(voornaam)</h2>
-                (emoji)
+                <h2>{{person.name | remove_last: string}}</h2>
+                {{person.vibe_emoji}}
               </figcaption>
             </figure>
             <article class="overlay overlaybottom">
-              <h3>Naam</h3>
+              <h3>{{person.name}} </h3>
               <h3>Bio:</h3>
-              <p>bio</p>
+              <p>  {{person.bio }}</p>
               <h3>Squad:</h3>
               <p>1J</p>
               <h3>Team:</h3>
-              <p>Harmony</p>
+              <p>{{person.team }}</p>
             </article>
           </article>
         {% endfor %}
