@@ -11,6 +11,15 @@
 
     --text-color-1: #050542;
     --text-color-2: #66e5bf;
+    
+    /* h1 */
+    --font-size-xl: 3rem;
+    /* h2 */
+    --font-size-l: 2rem;
+    /* h3 */
+    --font-size-m: 1.5rem;
+    /* p */
+    --font-size-s: 1rem;
 }
 
 /* EINDE KEVIN */
