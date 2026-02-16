@@ -11,6 +11,12 @@
 
     --text-color-1: #050542;
     --text-color-2: #66e5bf;
+
+    --text-color-1: #050542;
+    --text-color-2: #fff;
+
+    --outline-color-1: #050542;
+    --outline-color-2: #66e5bf;
     
     /* h1 */
     --font-size-xl: 3rem;
@@ -22,16 +28,31 @@
     --font-size-s: 1rem;
 }
 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: var(--background-color-2);
+    outline: solid var(--outline-color-1);
+    width: 100%;
+    height: 100px;
+    position:absolute;
+
+}
+
+aside {
+    justify-content: center;
+    z-index: -1;
+    padding-top: 10em;
+    background: var(--background-color-2);
+    outline: solid var(--outline-color-1);
+    position: absolute;
+    left: 0;
+    height: 1000px;
+    width: 300px;
+}
+
 /* EINDE KEVIN */
-
-
-
-/* BEGIN KÉ */
-
-
-/* EINDE KÉ */
-
-
 
 
 /* BEGIN METE */
@@ -46,3 +67,102 @@
 
 
 /* EINDE MAARTEN */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* BEGIN KÉ */
+body {
+    display: grid;
+
+}
+
+section{
+    margin: 7em 20em;
+}
+.container {
+  position: relative;
+  width: 20em;
+  display: inline-block;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 1em;
+  border: solid var(--outline-color-2) 3px;
+  background-color: var(--background-color-1);
+box-shadow: var(--outline-color-2) 5px 5px, var(--outline-color-2) 8px 8px;
+}
+
+img {
+  display: block;
+  width: 20em;
+  height: 16em;
+  position: relative;
+  border-radius: 1em;
+  object-fit: cover;
+}
+
+figcaption{color: var(--text-color-2);}
+
+.overlay {
+  position: absolute;
+  transition: all 0.3s ease;
+  opacity: 0;
+  background-color:var(--background-color-2);
+  border-radius: 1em;
+  overflow: hidden;
+  padding: 1em;
+  border: solid var(--outline-color-1) 3px;
+box-shadow: var(--outline-color-1) 5px 5px, var(--outline-color-1) 8px 8px;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+  width: 20em;
+
+}
+
+.overlaybottom {
+  width: 100%;
+  height: 0;
+  bottom: -2px;
+  left: -3px;
+}
+
+.container:hover .overlaybottom {
+  height: 92%;
+}
+/* EINDE KÉ */

@@ -3,123 +3,118 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/style.css">
     <title>Squad Page</title>
   </head>
   <body>
-    {% comment %}
-      <header>
-        <h1>Squad Page</h1>
-        <input type="search">
-      </header>
+    <header>
+      <h1>Squad Page</h1>
+      <input type="search">
+    </header>
 
-      <main>
-        <aside>
-          <h2>Sorteer op:</h2>
-          <label>Naam:</label>
-          <select>
-            <option value="a-z">A-Z</option>
-            <option value="z-a">Z-A</option>
-          </select>
+    <main>
+      <aside>
+        <h2>Sorteer op:</h2>
+        <label>Naam:</label>
+        <select>
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+        </select>
 
-          <h2>Filter op</h2>
-          <label>Squad:</label>
-          <select>
-            <option value="1i">1I</option>
-            <option value="1j">1J</option>
-          </select>
+        <h2>Filter op</h2>
+        <label>Squad:</label>
+        <select>
+          <option value="1i">1I</option>
+          <option value="1j">1J</option>
+        </select>
 
-          <label>Team:</label>
-          <select>
-            <option value="bliss">Bliss</option>
-            <option value="cheer">Cheer</option>
-            <option value="dazzle">Dazzle</option>
-            <option value="delight">Delight</option>
-            <option value="fun">Fun</option>
-            <option value="glow">Glow</option>
-            <option value="happy">Happy</option>
-            <option value="harmony">Harmony</option>
-            <option value="jolly">Jolly</option>
-            <option value="joy">Joy</option>
-            <option value="radiant">Radiant</option>
-            <option value="rocket">Rocket</option>
-            <option value="spark">Spark</option>
-            <option value="sunny">Sunny</option>
-          </select>
+        <label>Team:</label>
+        <select>
+          <option value="bliss">Bliss</option>
+          <option value="cheer">Cheer</option>
+          <option value="dazzle">Dazzle</option>
+          <option value="delight">Delight</option>
+          <option value="fun">Fun</option>
+          <option value="glow">Glow</option>
+          <option value="happy">Happy</option>
+          <option value="harmony">Harmony</option>
+          <option value="jolly">Jolly</option>
+          <option value="joy">Joy</option>
+          <option value="radiant">Radiant</option>
+          <option value="rocket">Rocket</option>
+          <option value="spark">Spark</option>
+          <option value="sunny">Sunny</option>
+        </select>
 
-          <label>Emoji:</label>
-          <select>
-            <option value="🧌">🧌</option>
-            <option value="🍗">🍗</option>
-            <option value="❤️">❤️</option>
-            <option value="🫡">🫡</option>
-            <option value="🤑">🤑</option>
-            <option value="👀">👀</option>
-            <option value="🦧">🦧</option>
-            <option value="🪤">🪤</option>
-            <option value="🫧">🫧</option>
-            <option value="💅🏻">💅🏻</option>
-          </select>
+        <label>Emoji:</label>
+        <select>
+          <option value="🧌">🧌</option>
+          <option value="🍗">🍗</option>
+          <option value="❤️">❤️</option>
+          <option value="🫡">🫡</option>
+          <option value="🤑">🤑</option>
+          <option value="👀">👀</option>
+          <option value="🦧">🦧</option>
+          <option value="🪤">🪤</option>
+          <option value="🫧">🫧</option>
+          <option value="💅🏻">💅🏻</option>
+        </select>
 
-          <label>Favorieten:</label>
-          <input type="checkbox">
+        <label>Favorieten:</label>
+        <input type="checkbox">
 
-          <button>Submit</button>
-        </aside>
+        <button>Submit</button>
+      </aside>
 
-        <section>
-          <article>
-            <figure>
-              <img src="" alt="">
-              <figcaption>
-                <h2>(voornaam)</h2>
-                (emoji)
-              </figcaption>
-            </figure>
-            <article>
-              <h3>Naam</h3>
-              <h3>Bio:</h3>
-              <p>bio</p>
-              <h3>Squad:</h3>
-              <p>1J</p>
-              <h3>Team:</h3>
-              <p>Harmony</p>
-            </article>
+      <section>
+        
+      <article class="container">
+          <figure>
+            {% if person.mugshot %}
+   
+     <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
+
+    {% else %} 
+      <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-placeholder-flat-600nw-1151124605.jpg" alt="" /> 
+  {% endif %}
+            <figcaption><h2>(voornaam)</h2>(emoji)</figcaption>
+          </figure>
+          <article class="overlay overlaybottom">
+            <h3>Naam</h3>
+            <h3>Bio:</h3>
+            <p>bio</p>
+            <h3>Squad:</h3>
+            <p>1J</p>
+            <h3>Team:</h3>
+            <p>Harmony</p>
           </article>
-        </section>
-      </main>
+        </article>
+      </section>
+
+
+      
+  
+    </main>
+
+    {% comment %}
+      {% for message in messages %}
+        <p>{{ message.from }}: {{ message.text }} @{{ message.created | date: '%d-%m-%Y %H:%M' }}</p>
+      {% else %}
+        <p>Er zijn nog geen berichten voor dit team.</p>
+      {% endfor %}
+
+      <h2>Voeg een bericht toe</h2>
+      <form method="post" action="/">
+        <label>
+          Naam:
+          <input type="text" name="from" required>
+        </label>
+        <label>
+          Bericht:
+          <textarea name="text" required></textarea>
+        </label>
+        <button type="submit">Verstuur</button>
+      </form>
     {% endcomment %}
-
-    {% for message in messages %}
-      <p>{{ message.from }}: {{ message.text }} @{{ message.created | date: '%d-%m-%Y %H:%M' }}</p>
-    {% else %}
-      <p>Er zijn nog geen berichten voor dit team.</p>
-    {% endfor %}
-
-    <h2>Voeg een bericht toe</h2>
-    <form method="post" action="/">
-      <label>
-        Naam:
-        <input type="text" name="from" required>
-      </label>
-      <label>
-        Bericht:
-        <textarea name="text" required></textarea>
-      </label>
-      <button type="submit">Verstuur</button>
-    </form>
-
-    <form>
-      <select>
-        {% comment %} <option value="?sort=name:asc">a-z</option> {% endcomment %}
-        {% comment %} <option value="?sort=name:desc">z-a</option> {% endcomment %}
-      </select>
-    </form>
-
-    <a href="?sort=name:asc">naam a-z</a>
-    <a href="?sort=name:desc">naam z-a</a>
-
-    {% for person in persons %}
-      <p>{{ person.name }}</p>
-    {% endfor %}
   </body>
 </html>
