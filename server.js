@@ -160,8 +160,8 @@ app.post("/", async function (request, response) {
 // TESTEN MET POST
 // ---------------
 
-app.get("/person/:id", async function (request, response) {
-  
+app.get("/:id", async function (request, response) {
+
   const personDetailResponse = await fetch(
     "https://fdnd.directus.app/items/person/" + request.params.id,
   );
@@ -179,7 +179,7 @@ app.get("/person/:id", async function (request, response) {
   });
 });
 
-app.post("/person/:id/like", async function (request, response) {
+app.post("/:id/like", async function (request, response) {
   await fetch("https://fdnd.directus.app/items/messages", {
     method: "POST",
     body: JSON.stringify({
@@ -192,10 +192,10 @@ app.post("/person/:id/like", async function (request, response) {
     },
   });
 
-  response.redirect(303, `/person/${request.params.id}`);
+  response.redirect(303, `/${request.params.id}`);
 });
 
-app.post("/person/:id/unlike", async function (request, response) {
+app.post("/:id/unlike", async function (request, response) {
   const likesForPersonResponse = await fetch(
     `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
   );
@@ -209,7 +209,7 @@ app.post("/person/:id/unlike", async function (request, response) {
     },
   );
 
-  response.redirect(303, `/person/${request.params.id}`);
+  response.redirect(303, `/${request.params.id}`);
 });
 
 // ------------
