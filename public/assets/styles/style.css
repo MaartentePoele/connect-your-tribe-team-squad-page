@@ -272,7 +272,7 @@ figcaption{color: var(--text-color-2);}
   height: 90%;
 }
 
-svg{position:absolute;
+button{position:absolute;
   z-index: 1;
 background-color: rgba(0, 0, 0, 0.4);
 border-radius: 1.5em;
