@@ -252,8 +252,28 @@ app.post("/:id/unlike", async function (request, response) {
 // CODE VOOR METE VANAF REGEL 250
 // ------------------------------
 
+app.get("/", async function (request, response) {
+  const params = {
+    fields: "*,squads.*",
 
+    "filter[squads][squad_id][tribe][name]": "FDND Jaar 1",
+    "filter[squads][squad_id][cohort]": "2526",
+  };
 
+if (search) {
+  params['filter[name][_contains]'] = search;
+}
+
+const personResponse = await fetch(
+    "https://fdnd.directus.app/items/person/?" + new URLSearchParams(params),
+  );
+
+  const personResponseJSON = await personResponse.json();
+
+  response.render("index.liquid", {
+    persons: personResponseJSON.data,
+  });
+});
 
 // --------------------
 // EINDE CODE VOOR METE

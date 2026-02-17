@@ -58,6 +58,29 @@ aside {
 
 /* BEGIN METE */
 
+.search-box{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+header input{
+    padding: 0.5rem 1.7rem;
+    border-radius: 5rem;
+}
+
+.search-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon{
+    height: 1.8rem;
+    width: 2rem;
+    position: relative;
+    top: 0.05rem;
+}
 
 /* EINDE METE */
 
