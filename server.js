@@ -161,13 +161,15 @@ app.post("/", async function (request, response) {
 // ---------------
 
 app.get("/person/:id", async function (request, response) {
+  
   const personDetailResponse = await fetch(
     "https://fdnd.directus.app/items/person/" + request.params.id,
   );
+  
   const personDetailResponseJSON = await personDetailResponse.json();
 
   const likesForPersonResponse = await fetch(
-    `https://fdnd.directus.app/items/messages?filter[for]=Team ${teamName} / Person ${request.params.id} / Like`,
+    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
   );
   const likesForPersonResponseJSON = await likesForPersonResponse.json();
 
@@ -181,7 +183,7 @@ app.post("/person/:id/like", async function (request, response) {
   await fetch("https://fdnd.directus.app/items/messages", {
     method: "POST",
     body: JSON.stringify({
-      for: `Team ${teamName} / Person ${request.params.id} / Like`,
+      for: `Person ${request.params.id} / Like`,
       from: "",
       text: "",
     }),
@@ -195,7 +197,7 @@ app.post("/person/:id/like", async function (request, response) {
 
 app.post("/person/:id/unlike", async function (request, response) {
   const likesForPersonResponse = await fetch(
-    `https://fdnd.directus.app/items/messages?filter[for]=Team ${teamName} / Person ${request.params.id} / Like`,
+    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
   );
   const likesForPersonResponseJSON = await likesForPersonResponse.json();
   const likesForPersonResponseID = likesForPersonResponseJSON.data[0].id;
