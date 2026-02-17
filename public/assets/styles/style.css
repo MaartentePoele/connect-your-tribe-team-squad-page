@@ -170,4 +170,13 @@ box-shadow: var(--outline-color-1) 5px 5px, var(--outline-color-1) 8px 8px;
 .container:hover .overlaybottom {
   height: 90%;
 }
+
+svg{position:absolute;
+  z-index: 1;
+background-color: rgba(0, 0, 0, 0.4);
+border-radius: 1.5em;
+padding:.3em;
+right: 15px;
+top: 5px;
+}
 /* EINDE KÉ */
