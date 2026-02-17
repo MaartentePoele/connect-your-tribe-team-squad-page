@@ -5,6 +5,12 @@ import { Liquid } from "liquidjs";
 // Vul hier jullie team naam in
 const teamName = "Harmony";
 
+// Lees alle eerstejaars personen in
+const personResponse = await fetch(
+  "https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter[squads][squad_id][tribe][name]=FDND Jaar 1&filter[squads][squad_id][cohort]=2526",
+);
+const personResponseJSON = await personResponse.json();
+
 const app = express();
 app.use(express.static("public"));
 const engine = new Liquid();
@@ -161,11 +167,10 @@ app.post("/", async function (request, response) {
 // ---------------
 
 app.get("/:id", async function (request, response) {
-
   const personDetailResponse = await fetch(
     "https://fdnd.directus.app/items/person/" + request.params.id,
   );
-  
+
   const personDetailResponseJSON = await personDetailResponse.json();
 
   const likesForPersonResponse = await fetch(
@@ -173,13 +178,21 @@ app.get("/:id", async function (request, response) {
   );
   const likesForPersonResponseJSON = await likesForPersonResponse.json();
 
-  response.render("person.liquid", {
+  response.render("index.liquid", {
+    // persons: personResponseJSON.data,
     person: personDetailResponseJSON.data,
     liked: likesForPersonResponseJSON.data.length == 1,
   });
 });
 
 app.post("/:id/like", async function (request, response) {
+  // console log
+  console.log("Verzonden data:", {
+    for: `Person ${request.params.id} / Like`,
+    from: "",
+    text: "",
+  });
+
   await fetch("https://fdnd.directus.app/items/messages", {
     method: "POST",
     body: JSON.stringify({
@@ -192,7 +205,7 @@ app.post("/:id/like", async function (request, response) {
     },
   });
 
-  response.redirect(303, `/${request.params.id}`);
+  response.redirect(303, "/");
 });
 
 app.post("/:id/unlike", async function (request, response) {
@@ -209,27 +222,12 @@ app.post("/:id/unlike", async function (request, response) {
     },
   );
 
-  response.redirect(303, `/${request.params.id}`);
+  response.redirect(303, "/");
 });
 
 // ------------
 // EINDE TESTEN
 // ------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -260,11 +258,11 @@ app.get("/", async function (request, response) {
     "filter[squads][squad_id][cohort]": "2526",
   };
 
-if (search) {
-  params['filter[name][_contains]'] = search;
-}
+  if (search) {
+    params["filter[name][_contains]"] = search;
+  }
 
-const personResponse = await fetch(
+  const personResponse = await fetch(
     "https://fdnd.directus.app/items/person/?" + new URLSearchParams(params),
   );
 

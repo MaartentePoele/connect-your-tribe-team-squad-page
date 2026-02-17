@@ -51,7 +51,7 @@ header {
 
 aside {
     justify-content: center;
-    z-index: 1;
+    /* z-index: 1; */
     padding-top: 1em;
     background: var(--background-color-1);
     outline: solid 5px var(--outline-color-2);
@@ -67,9 +67,25 @@ section.sidebar {
   padding: 1em;
 }
 
+li {
+  list-style: none;
+  margin: 1.8em 0 1.8em 0;
+
+    a {
+      text-decoration: none;
+      padding: 0.5em;
+    }
+}
+
+
 .navKnop {
   color: var(--background-color-1);
-  background: var;
+  background: var(--background-color-2);
+  border-radius: 5em;
+
+    a {
+      margin: 0.5em;
+    }
 }
 
 

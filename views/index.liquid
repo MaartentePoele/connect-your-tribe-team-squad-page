@@ -20,69 +20,82 @@
     <main>
       <aside>
         <section class="sidebar">
-        <h2>Sorteer op:</h2>
-        <label>Naam:</label>
-        <select>
-          <option value="a-z">A-Z</option>
-          <option value="z-a">Z-A</option>
-        </select>
+          <h2>Sorteer op:</h2>
+          <label>Naam:</label>
+          <select>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+          </select>
 
-        <h2>Filter op</h2>
-        <details>
-        <summary>
-        Squads
-        </summary>
-          <a class="navKnop" href="?filter=1I">1I</option>
-          <a class="navKnop" href="?filter=1J">1J</option>
-        </details>
-     
-        <details>
-        <summary>
-        Teams
-        </summary>
-          <a class="navKnop" href="/">All</a> 
-          <a class="navKnop" href="?filter=Cheer">Cheer</a>
-          <a class="navKnop" href="?filter=Dazzle">Dazzle</a>
-          <a class="navKnop" href="?filter=Glow">Glow</a>
-          <a class="navKnop" href="?filter=Harmony">Harmony</a>
-          <a class="navKnop" href="?filter=Radiant">Radiant</a>
-          <a class="navKnop" href="?filter=Rocket">Rocket</a>
-          <a class="navKnop" href="?filter=Spark">Spark</a>
-          <a class="navKnop" href="?filter=Sunny">Sunny</a>
-        </details>
+          <h2>Filter op</h2>
 
+          <details>
+            <summary>Squad</summary>
+            <ul>
+              <li><a class="navKnop" href="?filter=1I">1I</a></li>
+              <li><a class="navKnop" href="?filter=1J">1J</a></li>
+            </ul>
+          </details>
 
-        <label>Emoji:</label>
-        <select>
-          <option value="🧌">🧌</option>
-          <option value="🍗">🍗</option>
-          <option value="❤️">❤️</option>
-          <option value="🫡">🫡</option>
-          <option value="🤑">🤑</option>
-          <option value="👀">👀</option>
-          <option value="🦧">🦧</option>
-          <option value="🪤">🪤</option>
-          <option value="🫧">🫧</option>
-          <option value="💅🏻">💅🏻</option>
-        </select>
+          <details>
+            <summary>Teams</summary>
+            <ul>
+              <li><a class="navKnop" href="/">All</a></li>
+              <li><a class="navKnop" href="?filter=Cheer">Cheer</a></li>
+              <li><a class="navKnop" href="?filter=Dazzle">Dazzle</a></li>
+              <li><a class="navKnop" href="?filter=Glow">Glow</a></li>
+              <li><a class="navKnop" href="?filter=Harmony">Harmony</a></li>
+              <li><a class="navKnop" href="?filter=Radiant">Radiant</a></li>
+              <li><a class="navKnop" href="?filter=Rocket">Rocket</a></li>
+              <li><a class="navKnop" href="?filter=Spark">Spark</a></li>
+              <li><a class="navKnop" href="?filter=Sunny">Sunny</a></li>
+            </ul>
+          </details>
 
-        <label>Favorieten:</label>
-        <input type="checkbox">
+          <label>Emoji:</label>
+          <select>
+            <option value="🧌">🧌</option>
+            <option value="🍗">🍗</option>
+            <option value="❤️">❤️</option>
+            <option value="🫡">🫡</option>
+            <option value="🤑">🤑</option>
+            <option value="👀">👀</option>
+            <option value="🦧">🦧</option>
+            <option value="🪤">🪤</option>
+            <option value="🫧">🫧</option>
+            <option value="💅🏻">💅🏻</option>
+          </select>
 
-        <button>Submit</button>
-      </section>
+          <label>Favorieten:</label>
+          <input type="checkbox">
+
+          <button>Submit</button>
+        </section>
       </aside>
 
       <section>
         {% for person in persons %}
           <article class="container">
-             <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" fill="white" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40px"
+              height="40px"
+              viewBox="0 0 24 24"
+              fill="white"
+              stroke="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-heart-icon lucide-heart"
+            >
+              <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/>
+            </svg>
             <figure>
               {% if person.mugshot %}
                 <img src="https://fdnd.directus.app/assets/{{ person.mugshot }}?width=500" alt="Profile picture">
 
               {% elsif person.avatar %}
-                 <img src="{{ person.avatar }}"  alt="Avatar">
+                <img src="{{ person.avatar }}" alt="Avatar">
 
               {% else %}
                 <img
@@ -92,20 +105,18 @@
               {% endif %}
 
               <figcaption>
-                <h2>{{person.name}}</h2>
-                {{person.vibe_emoji}}
-               
-
+                <h2>{{ person.name }}</h2>
+                {{ person.vibe_emoji }}
               </figcaption>
             </figure>
             <article class="overlay overlaybottom">
-              <h3>{{person.name}} </h3>
+              <h3>{{ person.name }}</h3>
               <h3>Bio:</h3>
-              <p>  {{person.bio }}</p>
+              <p>{{ person.bio }}</p>
               <h3>Squad:</h3>
               <p>1J</p>
               <h3>Team:</h3>
-              <p>{{person.team }}</p>
+              <p>{{ person.team }}</p>
             </article>
           </article>
         {% endfor %}
