@@ -31,6 +31,9 @@
     --font-size-s: 1rem;
 }
 
+main {
+  background: var(--background-color-1);
+}
 
 header {
     display: flex;

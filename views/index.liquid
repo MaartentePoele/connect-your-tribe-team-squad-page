@@ -19,6 +19,7 @@
 
     <main>
       <aside>
+        <section class="sidebar">
         <h2>Sorteer op:</h2>
         <label>Naam:</label>
         <select>
@@ -27,29 +28,29 @@
         </select>
 
         <h2>Filter op</h2>
-        <label>Squad:</label>
-        <select>
-          <option value="1i">1I</option>
-          <option value="1j">1J</option>
-        </select>
+        <details>
+        <summary>
+        Squads
+        </summary>
+          <a class="navKnop" href="?filter=1I">1I</option>
+          <a class="navKnop" href="?filter=1J">1J</option>
+        </details>
+     
+        <details>
+        <summary>
+        Teams
+        </summary>
+          <a class="navKnop" href="/">All</a> 
+          <a class="navKnop" href="?filter=Cheer">Cheer</a>
+          <a class="navKnop" href="?filter=Dazzle">Dazzle</a>
+          <a class="navKnop" href="?filter=Glow">Glow</a>
+          <a class="navKnop" href="?filter=Harmony">Harmony</a>
+          <a class="navKnop" href="?filter=Radiant">Radiant</a>
+          <a class="navKnop" href="?filter=Rocket">Rocket</a>
+          <a class="navKnop" href="?filter=Spark">Spark</a>
+          <a class="navKnop" href="?filter=Sunny">Sunny</a>
+        </details>
 
-        <label>Team:</label>
-        <select>
-          <option value="bliss">Bliss</option>
-          <option value="cheer">Cheer</option>
-          <option value="dazzle">Dazzle</option>
-          <option value="delight">Delight</option>
-          <option value="fun">Fun</option>
-          <option value="glow">Glow</option>
-          <option value="happy">Happy</option>
-          <option value="harmony">Harmony</option>
-          <option value="jolly">Jolly</option>
-          <option value="joy">Joy</option>
-          <option value="radiant">Radiant</option>
-          <option value="rocket">Rocket</option>
-          <option value="spark">Spark</option>
-          <option value="sunny">Sunny</option>
-        </select>
 
         <label>Emoji:</label>
         <select>
@@ -69,6 +70,7 @@
         <input type="checkbox">
 
         <button>Submit</button>
+      </section>
       </aside>
 
       <section>
