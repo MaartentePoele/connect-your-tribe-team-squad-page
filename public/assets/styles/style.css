@@ -120,6 +120,40 @@ header input{
     top: 0.05rem;
 }
 
+footer{
+  background: #66e5bf;
+  box-shadow: 0 -6px 25px rgba(99, 199, 173, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 3rem 0;
+  h4{
+    text-align: center;
+    font-size: var(--font-size-m);
+  }
+  
+}
+
+.team-links{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 5rem;
+  a{
+    display: flex;
+    gap: 1rem;
+    color: black;
+    font-weight: 500;
+    font-weight: 600;
+  }
+  img{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 10rem;
+    position: relative;
+    top: -0.3rem;
+  }
+}
 /* EINDE METE */
 
 
