@@ -51,7 +51,7 @@ header {
 
 aside {
     justify-content: center;
-    z-index: 1;
+    /* z-index: 1; */
     padding-top: 1em;
     background: var(--background-color-1);
     outline: solid 5px var(--outline-color-2);
