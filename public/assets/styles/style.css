@@ -215,6 +215,7 @@ main{
 
 .container {
   position: relative;
+  max-width: 20em;
   /* width: 270px; */
   height: 16em;
   display: inline-block;
@@ -226,11 +227,12 @@ main{
   box-shadow: var(--outline-color-2) 5px 5px, var(--outline-color-2) 8px 8px;
 }
 
-h2{font-size: var(--font-size-m);
+h2{font-size: var(--font-size-sm);
 display: inline;}
 
 img {
   display: block;
+  max-width: 20em;
   /* width: 270px; */
   height: 12em;
   position: relative;
@@ -249,7 +251,7 @@ figcaption{color: var(--text-color-2);}
   overflow: scroll;
   scrollbar-color: var(--background-color-1) var(--background-color-2);
   scrollbar-width: thin;
-
+  width: inherit;
   padding: 1em;
   border: solid var(--outline-color-1) 3px;
   box-shadow: var(--outline-color-1) 5px 5px, var(--outline-color-1) 8px 8px;
@@ -257,24 +259,24 @@ figcaption{color: var(--text-color-2);}
 
 .container:hover .overlay {
   opacity: 1;
-  width: 270px;
+
 
 }
 
 .overlaybottom {
   width: 100%;
   height: 0;
-  bottom: -2px;
+  bottom: 0;
   left: -3px;
 }
 
 .container:hover .overlaybottom {
-  height: 90%;
+  height: 100%;
 }
 
 button{position:absolute;
   z-index: 1;
-background-color: rgba(0, 0, 0, 0.4);
+background-color: rgba(255, 255, 255, 0.4);
 border-radius: 1.5em;
 padding:.3em;
 right: 15px;
