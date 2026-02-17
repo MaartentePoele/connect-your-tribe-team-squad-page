@@ -5,12 +5,6 @@ import { Liquid } from "liquidjs";
 // Vul hier jullie team naam in
 const teamName = "Harmony";
 
-// Lees alle eerstejaars personen in
-// const personResponse = await fetch(
-//   "https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter[squads][squad_id][tribe][name]=FDND Jaar 1&filter[squads][squad_id][cohort]=2526",
-// );
-// const personResponseJSON = await personResponse.json();
-
 const app = express();
 app.use(express.static("public"));
 const engine = new Liquid();
@@ -161,6 +155,129 @@ app.post("/", async function (request, response) {
   // Stuur de browser daarna weer naar de homepage
   response.redirect(303, "/");
 });
+
+// ---------------
+// TESTEN MET POST
+// ---------------
+
+app.get("/:id", async function (request, response) {
+
+  const personDetailResponse = await fetch(
+    "https://fdnd.directus.app/items/person/" + request.params.id,
+  );
+  
+  const personDetailResponseJSON = await personDetailResponse.json();
+
+  const likesForPersonResponse = await fetch(
+    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
+  );
+  const likesForPersonResponseJSON = await likesForPersonResponse.json();
+
+  response.render("person.liquid", {
+    person: personDetailResponseJSON.data,
+    liked: likesForPersonResponseJSON.data.length == 1,
+  });
+});
+
+app.post("/:id/like", async function (request, response) {
+  await fetch("https://fdnd.directus.app/items/messages", {
+    method: "POST",
+    body: JSON.stringify({
+      for: `Person ${request.params.id} / Like`,
+      from: "",
+      text: "",
+    }),
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+  });
+
+  response.redirect(303, `/${request.params.id}`);
+});
+
+app.post("/:id/unlike", async function (request, response) {
+  const likesForPersonResponse = await fetch(
+    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
+  );
+  const likesForPersonResponseJSON = await likesForPersonResponse.json();
+  const likesForPersonResponseID = likesForPersonResponseJSON.data[0].id;
+
+  await fetch(
+    `https://fdnd.directus.app/items/messages/${likesForPersonResponseID}`,
+    {
+      method: "DELETE",
+    },
+  );
+
+  response.redirect(303, `/${request.params.id}`);
+});
+
+// ------------
+// EINDE TESTEN
+// ------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------
+// CODE VOOR METE VANAF REGEL 250
+// ------------------------------
+
+app.get("/", async function (request, response) {
+  const params = {
+    fields: "*,squads.*",
+
+    "filter[squads][squad_id][tribe][name]": "FDND Jaar 1",
+    "filter[squads][squad_id][cohort]": "2526",
+  };
+
+if (search) {
+  params['filter[name][_contains]'] = search;
+}
+
+const personResponse = await fetch(
+    "https://fdnd.directus.app/items/person/?" + new URLSearchParams(params),
+  );
+
+  const personResponseJSON = await personResponse.json();
+
+  response.render("index.liquid", {
+    persons: personResponseJSON.data,
+  });
+});
+
+// --------------------
+// EINDE CODE VOOR METE
+// --------------------
 
 app.set("port", process.env.PORT || 8000);
 
