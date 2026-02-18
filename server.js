@@ -175,48 +175,37 @@ app.get("/", async function (request, response) {
     params["sort"] = "name";
   }
 
+  // Haalt data op per persoon
   const personResponse = await fetch(
     "https://fdnd.directus.app/items/person/?" + new URLSearchParams(params),
   );
-
   const personResponseJSON = await personResponse.json();
 
-  response.render("index.liquid", {
-    persons: personResponseJSON.data,
-  });
-});
-
-app.get("/:id", async function (request, response) {
+  // Voor de like button
   const personDetailResponse = await fetch(
     "https://fdnd.directus.app/items/person/" + request.params.id,
   );
-
   const personDetailResponseJSON = await personDetailResponse.json();
 
   const likesForPersonResponse = await fetch(
-    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
+    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Geliket`,
   );
   const likesForPersonResponseJSON = await likesForPersonResponse.json();
+  console.log(likesForPersonResponseJSON.data.length);
+
 
   response.render("index.liquid", {
-    // persons: personResponseJSON.data,
+    persons: personResponseJSON.data,
     person: personDetailResponseJSON.data,
-    liked: likesForPersonResponseJSON.data.length == 1,
+    liked: likesForPersonResponseJSON.data.length >= 1,
   });
 });
 
 app.post("/:id/like", async function (request, response) {
-  // console log
-  console.log("Verzonden data:", {
-    for: `Person ${request.params.id} / Like`,
-    from: "",
-    text: "",
-  });
-
   await fetch("https://fdnd.directus.app/items/messages", {
     method: "POST",
     body: JSON.stringify({
-      for: `Person ${request.params.id} / Like`,
+      for: `Person ${request.params.id} / Geliket`,
       from: "",
       text: "",
     }),
@@ -230,7 +219,7 @@ app.post("/:id/like", async function (request, response) {
 
 app.post("/:id/unlike", async function (request, response) {
   const likesForPersonResponse = await fetch(
-    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
+    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Geliket`,
   );
   const likesForPersonResponseJSON = await likesForPersonResponse.json();
   const likesForPersonResponseID = likesForPersonResponseJSON.data[0].id;
@@ -309,8 +298,36 @@ app.post("/:id/unlike", async function (request, response) {
 
 
 
+// ------------------------------
+// CODE VOOR METE VANAF REGEL 250
+// ------------------------------
 
+app.get("/", async function (request, response) {
+  const params = {
+    fields: "*,squads.*",
 
+    "filter[squads][squad_id][tribe][name]": "FDND Jaar 1",
+    "filter[squads][squad_id][cohort]": "2526",
+  };
+
+  if (search) {
+    params["filter[name][_contains]"] = search;
+  }
+
+  const personResponse = await fetch(
+    "https://fdnd.directus.app/items/person/?" + new URLSearchParams(params),
+  );
+
+  const personResponseJSON = await personResponse.json();
+
+  response.render("index.liquid", {
+    persons: personResponseJSON.data,
+  });
+});
+
+// --------------------
+// EINDE CODE VOOR METE
+// --------------------
 
 app.set("port", process.env.PORT || 8000);
 
