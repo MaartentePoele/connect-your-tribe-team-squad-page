@@ -282,7 +282,7 @@ figcaption{color: var(--text-color-2);}
   height: 100%;
 }
 
-button{
+.like-btn{
 z-index: 1;
 background-color: rgba(255, 255, 255, 0.4);
 border-radius: 1.5em;
