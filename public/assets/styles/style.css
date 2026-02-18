@@ -283,7 +283,10 @@ z-index: 1;
 background-color: rgba(255, 255, 255, 0.4);
 border-radius: 1.5em;
 padding:.3em;
-right: 15px;
+right: 8px;
 top: 5px;
+height: 4em;
 }
+
+svg{width: 3em;}
 /* EINDE KÉ */
