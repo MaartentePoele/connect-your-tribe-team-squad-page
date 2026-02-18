@@ -18,6 +18,10 @@ app.engine("liquid", engine.express());
 app.set("views", "./views");
 app.use(express.urlencoded({ extended: true }));
 
+// --------------
+// CODE VOOR METE
+// --------------
+
 app.get("/", async function (request, response) {
   const search = request.query.search;
   const params = {
@@ -30,6 +34,10 @@ app.get("/", async function (request, response) {
   if (search) {
     params["filter[name][_contains]"] = search;
   }
+
+  // --------------------
+  // EINDE CODE VOOR METE
+  // --------------------
 
   // Sorteer op naam
   if (request.query.sort == "name:asc") {
@@ -251,14 +259,10 @@ app.post("/:id/unlike", async function (request, response) {
 
 
 
-// ------------------------------
-// CODE VOOR METE VANAF REGEL 250
-// ------------------------------
 
 
-// --------------------
-// EINDE CODE VOOR METE
-// --------------------
+
+
 
 app.set("port", process.env.PORT || 8000);
 
