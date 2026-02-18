@@ -80,6 +80,7 @@ aside.active {
   background: var(--background-color-2);
   color: var(--text-color-1);
   font-weight: bold;
+  border: none;
   border-radius: 0 1em 1em 0;
   position: absolute;
   z-index: 10;
