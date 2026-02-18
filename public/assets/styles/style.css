@@ -42,7 +42,8 @@ main {
 header {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 0 4em 0 1em;
     background: var(--background-color-1);
     outline: solid 0.5em var(--outline-color-2);
     width: 100%;
@@ -113,6 +114,10 @@ header input{
     border-radius: 5rem;
 }
 
+button.search-btn {
+  justify-content: center;
+}
+
 .search-btn{
     background: none;
     border: none;
@@ -122,8 +127,8 @@ header input{
 .search-icon{
     height: 1.8rem;
     width: 2rem;
-    position: relative;
     top: 0.05rem;
+    position: relative;
 }
 
 footer{
@@ -259,8 +264,6 @@ figcaption{color: var(--text-color-2);}
 
 .container:hover .overlay {
   opacity: 1;
-
-
 }
 
 .overlaybottom {
@@ -274,10 +277,11 @@ figcaption{color: var(--text-color-2);}
   height: 100%;
 }
 
-button{position:absolute;
-  z-index: 1;
-background-color: rgb(255, 255, 255);
-border-radius: 50%;
+button{
+position:absolute;
+z-index: 1;
+background-color: rgba(255, 255, 255, 0.4);
+border-radius: 1.5em;
 padding:.3em;
 right: 8px;
 top: 5px;
