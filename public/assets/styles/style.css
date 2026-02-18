@@ -290,11 +290,9 @@ padding:.3em;
 right: 8px;
 top: 5px;
 height: 4em;
+position:absolute;
 }
 
-.like {
-  position:absolute;
-}
 
 
 
