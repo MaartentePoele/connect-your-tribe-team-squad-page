@@ -275,7 +275,7 @@ figcaption{color: var(--text-color-2);}
   width: 100%;
   height: 0;
   bottom: 0;
-  left: -3px;
+  left: 0;
 }
 
 .container:hover .overlaybottom {
@@ -291,6 +291,7 @@ right: 8px;
 top: 5px;
 height: 4em;
 position:absolute;
+cursor: pointer;
 }
 
 svg{width: 3em;}
