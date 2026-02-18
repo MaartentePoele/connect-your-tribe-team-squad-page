@@ -147,8 +147,9 @@ footer{
 
 .team-links{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  place-items: center;
   padding: 0 5rem;
   a{
     display: flex;
@@ -163,6 +164,10 @@ footer{
     border-radius: 10rem;
     position: relative;
     top: -0.3rem;
+  }
+  @media (min-width: 655px) {
+    flex-direction: row;
+
   }
 }
 /* EINDE METE */
