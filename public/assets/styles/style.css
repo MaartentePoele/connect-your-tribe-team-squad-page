@@ -292,6 +292,12 @@ top: 5px;
 height: 4em;
 position:absolute;
 cursor: pointer;
+
+&:hover{
+svg{
+  fill: black;
+}
+}
 }
 
 svg{width: 3em;}
