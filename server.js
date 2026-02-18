@@ -18,47 +18,26 @@ app.engine("liquid", engine.express());
 app.set("views", "./views");
 app.use(express.urlencoded({ extended: true }));
 
-// app.get("/", async function (request, response) {
-//   // Filter eerst de berichten die je wilt zien, net als bij personen
-//   // Deze tabel wordt gedeeld door iedereen, dus verzin zelf een handig filter,
-//   // bijvoorbeeld je teamnaam, je projectnaam, je person ID, de datum van vandaag, etc..
-
-//   const params = {
-//     "filter[for]": `Team ${teamName}`,
-//   };
-
-//   // Maak hiermee de URL aan, zoals we dat ook in de browser deden
-//   const apiURL =
-//     "https://fdnd.directus.app/items/messages?" + new URLSearchParams(params);
-
-//   // Laat eventueel zien wat de filter URL is
-//   // (Let op: dit is _niet_ de console van je browser, maar van NodeJS, in je terminal)
-//   // console.log('API URL voor messages:', apiURL)
-
-//   // Haal daarna de messages data op
-//   const messagesResponse = await fetch(apiURL);
-
-//   // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
-//   const messagesResponseJSON = await messagesResponse.json();
-
-//   // Controleer eventueel de data in je console
-//   // console.log(messagesResponseJSON)
-
-//   // En render de view met de messages
-//   response.render("index.liquid", {
-//     teamName: teamName,
-//     messages: messagesResponseJSON.data,
-//     person: personResponseJSON.data,
-//   });
-// });
+// --------------
+// CODE VOOR METE
+// --------------
 
 app.get("/", async function (request, response) {
+  const search = request.query.search;
   const params = {
     fields: "*,squads.*",
 
     "filter[squads][squad_id][tribe][name]": "FDND Jaar 1",
     "filter[squads][squad_id][cohort]": "2526",
   };
+
+  if (search) {
+    params["filter[name][_contains]"] = search;
+  }
+
+  // --------------------
+  // EINDE CODE VOOR METE
+  // --------------------
 
   // Sorteer op naam
   if (request.query.sort == "name:asc") {
@@ -162,48 +141,37 @@ app.get("/", async function (request, response) {
     params["sort"] = "name";
   }
 
+  // Haalt data op per persoon
   const personResponse = await fetch(
     "https://fdnd.directus.app/items/person/?" + new URLSearchParams(params),
   );
-
   const personResponseJSON = await personResponse.json();
 
-  response.render("index.liquid", {
-    persons: personResponseJSON.data,
-  });
-});
-
-app.get("/:id", async function (request, response) {
+  // Voor de like button
   const personDetailResponse = await fetch(
     "https://fdnd.directus.app/items/person/" + request.params.id,
   );
-
   const personDetailResponseJSON = await personDetailResponse.json();
 
   const likesForPersonResponse = await fetch(
-    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
+    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Geliket`,
   );
   const likesForPersonResponseJSON = await likesForPersonResponse.json();
+  console.log(likesForPersonResponseJSON.data.length);
+
 
   response.render("index.liquid", {
-    // persons: personResponseJSON.data,
+    persons: personResponseJSON.data,
     person: personDetailResponseJSON.data,
-    liked: likesForPersonResponseJSON.data.length == 1,
+    liked: likesForPersonResponseJSON.data.length >= 1,
   });
 });
 
 app.post("/:id/like", async function (request, response) {
-  // console log
-  console.log("Verzonden data:", {
-    for: `Person ${request.params.id} / Like`,
-    from: "",
-    text: "",
-  });
-
   await fetch("https://fdnd.directus.app/items/messages", {
     method: "POST",
     body: JSON.stringify({
-      for: `Person ${request.params.id} / Like`,
+      for: `Person ${request.params.id} / Geliket`,
       from: "",
       text: "",
     }),
@@ -217,7 +185,7 @@ app.post("/:id/like", async function (request, response) {
 
 app.post("/:id/unlike", async function (request, response) {
   const likesForPersonResponse = await fetch(
-    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Like`,
+    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Geliket`,
   );
   const likesForPersonResponseJSON = await likesForPersonResponse.json();
   const likesForPersonResponseID = likesForPersonResponseJSON.data[0].id;
@@ -293,36 +261,8 @@ app.post("/:id/unlike", async function (request, response) {
 
 
 
-// ------------------------------
-// CODE VOOR METE VANAF REGEL 300
-// ------------------------------
 
-app.get("/", async function (request, response) {
-  const params = {
-    fields: "*,squads.*",
 
-    "filter[squads][squad_id][tribe][name]": "FDND Jaar 1",
-    "filter[squads][squad_id][cohort]": "2526",
-  };
-
-  if (search) {
-    params["filter[name][_contains]"] = search;
-  }
-
-  const personResponse = await fetch(
-    "https://fdnd.directus.app/items/person/?" + new URLSearchParams(params),
-  );
-
-  const personResponseJSON = await personResponse.json();
-
-  response.render("index.liquid", {
-    persons: personResponseJSON.data,
-  });
-});
-
-// --------------------
-// EINDE CODE VOOR METE
-// --------------------
 
 app.set("port", process.env.PORT || 8000);
 
