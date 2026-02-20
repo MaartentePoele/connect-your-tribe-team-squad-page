@@ -220,6 +220,11 @@ footer{
 .team-links a:hover{
   text-shadow: 0 1px 25px rgba(0,0,0,1.5);
 }
+
+.title{
+  text-decoration: none;
+  color: white;
+}
 /* EINDE METE */
 
 

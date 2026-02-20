@@ -147,25 +147,46 @@ app.get("/", async function (request, response) {
   );
   const personResponseJSON = await personResponse.json();
 
-  // Voor de like button
-  const personDetailResponse = await fetch(
-    "https://fdnd.directus.app/items/person/" + request.params.id,
-  );
-  const personDetailResponseJSON = await personDetailResponse.json();
 
-  const likesForPersonResponse = await fetch(
-    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Geliket`,
-  );
-  const likesForPersonResponseJSON = await likesForPersonResponse.json();
-  console.log(likesForPersonResponseJSON.data.length);
+// --------------------
+// CODE VOOR METE EXTRA
+// --------------------
 
+  // Haalt per persoon op of hij/zij geliked is.
+  // Voor elke persoon wordt gekeken of er een "Geliked" message bestaat in Directus.
+  // Daarna wordt aan elke persoon een extra veld toegevoegd: liked (true/false).
+  const personsWithLikes = await Promise.all(
+  personResponseJSON.data.map(async (person) => {
+    const likesResponse = await fetch(
+      `https://fdnd.directus.app/items/messages?filter[for][_eq]=Person ${person.id} / Geliket`
+    );
+    const likesJSON = await likesResponse.json();
 
-  response.render("index.liquid", {
-    persons: personResponseJSON.data,
-    person: personDetailResponseJSON.data,
-    liked: likesForPersonResponseJSON.data.length >= 1,
-  });
+    return {
+      ...person,
+      liked: Array.isArray(likesJSON.data) && likesJSON.data.length > 0,
+    };
+  })
+);
+
+    // Filtert de lijst als de gebruiker op "Favorieten" heeft geklikt.
+    // Als ?favorites=1 in de URL staat, worden alleen gelikete personen getoond.
+    // Daarna wordt de juiste lijst doorgestuurd naar de Liquid template.
+    let filteredPersons = personsWithLikes;
+
+    if (request.query.favorites === "1") {
+      filteredPersons = personsWithLikes.filter(p => p.liked);
+    }
+
+    response.render("index.liquid", {
+      persons: filteredPersons,
+      favorites: request.query.favorites === "1"
+    });
 });
+
+// --------------------------
+// EINDE CODE VOOR METE EXTRA
+// --------------------------
 
 app.post("/:id/like", async function (request, response) {
   await fetch("https://fdnd.directus.app/items/messages", {
@@ -185,7 +206,7 @@ app.post("/:id/like", async function (request, response) {
 
 app.post("/:id/unlike", async function (request, response) {
   const likesForPersonResponse = await fetch(
-    `https://fdnd.directus.app/items/messages?filter[for]=Person ${request.params.id} / Geliket`,
+    `https://fdnd.directus.app/items/messages?filter[for][_eq]=Person ${request.params.id} / Geliket`,
   );
   const likesForPersonResponseJSON = await likesForPersonResponse.json();
   const likesForPersonResponseID = likesForPersonResponseJSON.data[0].id;
@@ -199,69 +220,6 @@ app.post("/:id/unlike", async function (request, response) {
 
   response.redirect(303, "/");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.set("port", process.env.PORT || 8000);
