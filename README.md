@@ -25,8 +25,6 @@ De html stuktuur is een onepage, hierin een sidebar met de navigatie (filter en 
 Dit is gestyled in css. er is een display flex gebruikt om het grid te krijgen zoals het is. 
 (er wordt gekeken naar de breedte van de viewport en ziet met deze informatie hoeveel kaartjes er naast elkaar moeten).
 
-## Installatie
-<!-- Bij Installatie staat stap-voor-stap beschreven hoe je de development omgeving moet inrichten om aan de repository te kunnen werken. -->
 ## Huisstijl
 De huisstijl is nagebootst van de FDND website https://programma.fdnd.nl/ (zie kleuren en outlines).
 Ik vindt dit thematisch erg passend omdat de opdracht was om een squadpage te maken waarin alle klasgenoten van FDND van dit jaar zichtbaar zijn.
