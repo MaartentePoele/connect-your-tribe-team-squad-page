@@ -2,11 +2,9 @@
   
   * [Beschrijving](#beschrijving)
   * [Kenmerken](#kenmerken)
-  * [Installatie](#installatie)
   * [Gebruik](#gebruik)
   * [Huisstijl](#huisstijl)
   * [Bronnen](#bronnen)
-  * [Licentie](#licentie)
 
 ## Beschrijving
 <!-- In de Beschrijving staat hoe je project er uit ziet, hoe het werkt en wat je er mee kan. -->
@@ -37,5 +35,3 @@ Met de sorteer functie kan je sorteren op naam (a-z, z-a).
 ## Bronnen
 voor de like functie hebben we een hart icoontje
 https://heroicons.com/
-
-## Licentie
