@@ -43,7 +43,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4em 0 1em;
+  padding: 0 1em 0 1em;
   background: var(--background-color-1);
   outline: solid 0.5em var(--outline-color-2);
   width: 100%;
@@ -55,9 +55,8 @@ header {
 aside {
   display: none;
   justify-content: center;
-  padding-top: 1em;
+  padding-top: 8em;
   background: var(--background-color-1);
-  outline: solid 0.5em var(--outline-color-2);
   color: var(--text-color-2);
   left: 0;
   height: 100%;
@@ -84,7 +83,7 @@ aside.active {
   border-radius: 0 1em 1em 0;
   position: absolute;
   z-index: 10;
-  top: 30em;
+  top: 9.5em;
   height: 100px;
   width: 50px;
 }
@@ -117,6 +116,10 @@ li {
     a {
       margin: 0.5em;
     }
+}
+
+label {
+  font-size: var(--font-size-m);
 }
 
 
@@ -180,7 +183,7 @@ footer{
     gap: 1rem;
     color: black;
     font-weight: 600;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-s);
   }
   img{
     height: 2rem;
@@ -261,7 +264,7 @@ main{
   box-shadow: var(--outline-color-2) 5px 5px, var(--outline-color-2) 8px 8px;
 }
 
-h2{font-size: var(--font-size-sm);
+h2{font-size: var(--font-size-m);
 display: inline;}
 
 img {
